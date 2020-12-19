@@ -13,7 +13,6 @@ app.get('*', function (request, response){
   response.sendFile(path.resolve(contentBasePath, 'index.html'))
 })
 
-
 app.listen(port, (error) => {
   if (error) {
     console.error('error', error)
