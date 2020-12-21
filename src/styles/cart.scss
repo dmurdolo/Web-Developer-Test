@@ -1,0 +1,54 @@
+.cart {
+    max-width: 650px;
+    padding: 11rem 0;
+
+    .container {
+        h1 {
+            font-weight: 200;
+            font-size: var(--font-size--large);
+            margin: 0;
+        }
+
+        p {
+            margin: 1rem 0;
+            font-weight: 200;
+            font-size: var(--font-size--small);
+            line-height: var(--font-size--large);
+        }
+
+        table {
+            width: 100%;
+            margin: 2rem 0;
+            text-align: left;
+            border-collapse: collapse;
+            
+            th, td {
+                padding: 1.5rem 0;      
+                font-size: var(--font-size--small);
+            }
+
+            thead {
+                tr {
+                    th {  
+                        font-weight: 400;
+                        border-bottom: 2px solid #efefef;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        font-weight: 200;
+                    }
+
+                    &.total {
+                        td {
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
