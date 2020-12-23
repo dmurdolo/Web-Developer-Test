@@ -1,6 +1,7 @@
+@import 'quantity-input.scss';
+
 .cart {
-    max-width: 650px;
-    padding: 11rem 0;
+    padding: 4rem 2rem;
 
     .container {
         h1 {
@@ -17,34 +18,181 @@
         }
 
         table {
-            width: 100%;
-            margin: 2rem 0;
-            text-align: left;
+            display: block;
             border-collapse: collapse;
-            
-            th, td {
-                padding: 1.5rem 0;      
-                font-size: var(--font-size--small);
-            }
+            width: 100%;
+            text-align: left;
 
             thead {
+                display: inherit;
+
                 tr {
-                    th {  
-                        font-weight: 400;
-                        border-bottom: 2px solid #efefef;
+                    position: absolute;
+                    top: -9999px;
+                    left: -9999px;
+
+                    th {
+                        padding: 1.5rem 0;
+                        font-size: var(--font-size--small);
                     }
                 }
             }
 
             tbody {
+                display: inherit;
+
                 tr {
+                    display: inherit;
+                    margin: 3rem 0 0;
+
                     td {
+                        display: inherit;
+                        position: relative;
+                        padding: 1.5rem 0 1.5rem 25%;
                         font-weight: 200;
+                        font-size: var(--font-size--small);
+                        text-align: right;
+
+                        &:first-child {
+                            border-bottom: 2px solid #efefef;
+                            padding: 1.5rem 0;
+                            text-align: left;
+                        }
+
+                        &:before {                                                
+                            /* Now like a table header */
+                            position: absolute;
+                            /* Top/left values mimic padding */
+                            top: 1.5rem;
+                            left: 0;
+                            width: 25%; 
+                            padding-right: 1rem; 
+                            white-space: nowrap;
+                            font-weight: 400;
+                            text-align: left;
+                        }
+
+                        &:nth-of-type(2):before { content: "Price"; }
+                        &:nth-of-type(3):before { content: "Quantity"; }                        
+                        &:nth-of-type(4):before { content: "Cost"; }
+                        &:nth-of-type(5):before { content: "Remove"; }
+                    }
+
+                    &.vat, &.subtotal, &.total, &.buy {
+                        margin: 0;
+
+                        td {
+                            &:before {
+                                font-weight: 200;
+                            }
+                            &:nth-of-type(1) { display: none; }
+                            &:nth-of-type(2) { display: none; }
+                            &:nth-of-type(4) { display: none; }
+                            &:nth-of-type(5) { display: none; }
+                        }
+                    }
+
+                    &.subtotal {
+                        margin: 3rem 0 0 0;
+                        td {
+                            &:nth-of-type(3):before { content: "Subtotal"; }
+                        }
+                    }
+
+                    &.vat {
+                        td {                          
+                            &:nth-of-type(3):before { content: "VAT at 20%"; }
+                        }
                     }
 
                     &.total {
                         td {
                             font-weight: 400;
+                            &:nth-of-type(3):before { 
+                                content: "Total";
+                                font-weight: inherit;
+                            }
+                        }
+                    }
+
+                    &.buy {
+                        td {      
+                            &:nth-of-type(2):before { content: ""; }
+                            &:nth-of-type(2) { display: block; }
+                            &:nth-of-type(3) { display: none; }                      
+                        }
+                    }
+
+                    &.no-items {
+                        td {
+                            border: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    /** Tablet and up **/
+    @media (min-width: 43em) {
+        max-width: 650px;
+        padding: 11rem 0;
+
+        .container {
+            table {
+                margin: 2rem 0;
+                display: table;         
+    
+                thead {   
+                    display: table-row-group;
+    
+                    tr {
+                        display: table-row;
+                        position: relative;
+                        left: initial;
+                        top: initial;
+    
+                        th {
+                            font-weight: 400;
+                            border-bottom: 2px solid #efefef;
+                            display: table-cell;
+                            padding: 1.5rem 1rem;
+                        }
+                    }
+                }
+    
+                tbody {
+                    display: table-row-group;
+    
+                    tr {
+                        display: table-row;
+    
+                        &.cart-item {
+                            &:hover {
+                                background: #efefef;
+                            }
+                        }
+                        
+                        td {
+                            display: table-cell;
+                            padding: 1.5rem 1rem;
+
+                            &:first-child {
+                                border-bottom: 0;
+                            }
+
+                            &:before {                        
+                                display: none;
+                            }
+                        }
+
+                        &.vat, &.subtotal, &.total, &.buy {    
+                            td {
+                                &:nth-of-type(1) { display: table-cell; }
+                                &:nth-of-type(2) { display: table-cell; }
+                                &:nth-of-type(4) { display: table-cell; }
+                                &:nth-of-type(5) { display: table-cell; }
+                            }
                         }
                     }
                 }

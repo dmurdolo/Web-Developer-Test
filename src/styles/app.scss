@@ -29,28 +29,38 @@ html {
         .wrapper {
             width: 100%;
             margin: 0 auto;
-
-            button {    
-                cursor: pointer;
-            
-                &.buy {
-                    font-weight: 400;
-                    text-transform: uppercase;
-                    background: #448AFF;
-                    color: #fff;
-                    border: 0;
-                    box-shadow: 0px 2px 4px 0 #d4d4d4;
-                    border-radius: .3rem;
-                    padding: 1rem;
-                }
-            
-                &.bin {
-                    background: transparent;
-                    border: 0;
-                    box-shadow: none;
-                }
-            }
-            
-        }
     }
+
+    button {    
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        border: 0;
+
+        &:disabled {
+            cursor: default;
+        }
+    
+        &.buy {
+            font-weight: 400;
+            text-transform: uppercase;
+            background: #448AFF;
+            color: #fff;
+            box-shadow: 0px 2px 4px 0 #d4d4d4;
+            border-radius: .3rem;
+            padding: 1rem;
+
+            &:disabled {
+                background: #d4d4d4;
+            }
+        }
+    
+        &.bin {
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+        }
+    }            
+}
 }

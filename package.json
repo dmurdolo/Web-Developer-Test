@@ -7,10 +7,9 @@
   },
   "main": "server.js",
   "scripts": {
-    "serve": "node server.js",
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "test": "test"
   },
   "repository": "git+https://github.com/Crazy-Alpaca/Web-Developer-Test.git",
@@ -31,8 +30,7 @@
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-sass": "^3.0.2",
-    "http-server": "^0.12.3",
-    "node-sass": "^4.14.1"
+    "http-server": "^0.12.3"
   },
   "dependencies": {
     "express": "^4.17.1",
