@@ -1,26 +1,28 @@
 .cart-quantity {
+    display: inline-block;
     border: 1px solid #448AFF;
     border-radius: .3rem;
-
-    /* https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+    max-width: 8rem;
+    padding: .25rem 1rem;
 
     input, button {
         border: 0;
         background: transparent;
         text-align: center;
         font-family: inherit;
+        display: inline;
+    }
 
-        /* Firefox */
-        &[type="number"] {
-            -moz-appearance: textfield;
-            width: auto;
+    input {
+        width: 80%;
+    }
 
-        }
+    button {
+        width: 10%;
+        color: #448AFF;
+    }
+
+    /** Tablet and up **/
+    @media (min-width: 43em) {
     }
 }

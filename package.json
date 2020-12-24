@@ -10,7 +10,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "test": "test"
+    "test": "jest --watch"
   },
   "repository": "git+https://github.com/Crazy-Alpaca/Web-Developer-Test.git",
   "keywords": [
@@ -24,19 +24,23 @@
   },
   "homepage": "https://github.com/Crazy-Alpaca/Web-Developer-Test#readme",
   "devDependencies": {
+    "babel-jest": "^26.6.3",
     "grunt": "^1.0.4",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^2.1.0",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-sass": "^3.0.2",
-    "http-server": "^0.12.3"
+    "http-server": "^0.12.3",
+    "jest": "^26.6.3"
   },
   "dependencies": {
     "express": "^4.17.1",
     "next": "^10.0.3",
     "react": "^17.0.1",
+    "react-confirm-alert": "^2.6.2",
     "react-dom": "^17.0.1",
+    "react-toast-notifications": "^2.4.0",
     "sass": "^1.30.0"
   }
 }

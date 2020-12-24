@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
+import { useToasts } from 'react-toast-notifications'
+
 import data from '../../../data/products/index.json'
 import QuantityInput from '../../components/QuantityInput'
 
@@ -13,17 +17,46 @@ const displayAsDecimal = (amount) => {
     return amount.toFixed(2);
 }
 
+const deleteConfirm = (item, deleteItem, updateItemTotal, updateCartItems) => {    
+    return confirmAlert({
+        title: `This will remove ${item.name}${item.size ? `, ${item.size}` : ', one size'} from your cart.`,
+        message: 'Are you sure?',
+        buttons: [
+            {
+                label: 'Yes',
+                onClick: () => {
+                    deleteItem(item.sku);
+                }
+            },
+            {
+                label: 'No',
+                onClick: () => {
+                    item.quantity = 1;
+                    item.total = updateItemTotal(item);
+
+                    updateCartItems(item);
+                }
+            }
+        ]
+    });
+}
+
+const stockAlert = (item, addToast) => {
+    return addToast(`You've selected all the stock for this item. Someone must like our ${item.name} 😊`, { appearance: 'info', id: 'stock-alert' });
+}
+
 const Cart = () => {
+    const { addToast } = useToasts();
     const [cartSubtotal, setCartSubtotal] = useState(0);
     const [cartTax, setCartTax] = useState(0);
     const [cartTotal, setCartTotal] = useState(0);
     const [cartItems, setCartItems] = useState(data && data.items.filter(item => item.stockLevel > 0));
 
     // Add some quantities for initial test purposes on mount
-    useEffect(() => {   
+    useEffect(() => {
         cartItems && cartItems.map(item => {
             item.quantity = 1;
-        });        
+        });
     }, []);
 
     // Calculate the item total, subtotal, tax and overall total on update
@@ -33,12 +66,12 @@ const Cart = () => {
                 return prev + cur.total;
             }, 0)) : 0
         );
-        
+
         setCartTax(roundNumber(cartSubtotal * .2));
         setCartTotal(roundNumber(cartSubtotal + cartTax));
     }, [cartItems, cartSubtotal, cartTax]);
 
-    // Delete item and update cart
+    // Delete item button action
     const deleteItem = (sku) => {
         let updatedCart = cartItems.filter((item) => {
             return item.sku != sku;
@@ -47,19 +80,30 @@ const Cart = () => {
         setCartItems(updatedCart);
     }
 
+    // Update the cart items array
+    const updateCartItems = (item) => {
+        let updatedItems = cartItems.map(el => el.sku === item.sku ? item : el);
+        setCartItems(updatedItems);
+    }
+
     // Update quantity with number
     const updateQuantity = (e, item) => {
         const newQuantity = Number(e.target.value);
 
+        if (newQuantity < 0 || newQuantity % 1 != 0) {
+            addToast(`Quantity must be a number and cannot be less than 0 or a decimal.`, { appearance: 'warning', id: 'quantity-alert' });
+            return;
+        }
+
         if (newQuantity >= item.stockLevel) {
+            stockAlert(item, addToast);
             item.quantity = item.stockLevel;
         } else if (newQuantity < item.stockLevel) {
             item.quantity = Number(newQuantity);
             item.total = updateItemTotal(item);
-        }      
+        }
 
-        let updatedItems = cartItems.map(el => el.sku === item.sku ? item : el);
-        setCartItems(updatedItems);
+        updateCartItems(item);
     }
 
     // Increase quantity by 1
@@ -67,10 +111,11 @@ const Cart = () => {
         if (item.quantity < item.stockLevel) {
             item.quantity += 1;
             item.total = updateItemTotal(item);
+        } else {
+            stockAlert(item, addToast);
         }
-        let updatedItems = cartItems.map(el => el.sku === item.sku ? item : el);
-        
-        setCartItems(updatedItems);
+
+        updateCartItems(item);
     }
 
     // Decrease quantity by 1
@@ -79,20 +124,18 @@ const Cart = () => {
             item.quantity -= 1;
             item.total = updateItemTotal(item);
 
-            let updatedItems = cartItems.map(el => el.sku === item.sku ? item : el);    
-
-            setCartItems(updatedItems);
+            updateCartItems(item);
         }
-        
+
         if (item.quantity == 0) {
-            deleteItem(item.sku);
+            deleteConfirm(item, deleteItem, updateItemTotal, updateCartItems);
         }
     }
 
     // On blur check the quantity amount
     const checkQuantity = (item) => {
         if (item.quantity == 0) {
-            deleteItem(item.sku);
+            deleteConfirm(item, deleteItem, updateItemTotal, updateCartItems);
         }
     }
 

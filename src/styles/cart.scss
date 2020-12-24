@@ -141,8 +141,9 @@
         .container {
             table {
                 margin: 2rem 0;
-                display: table;         
-    
+                display: table;     
+                table-layout: auto;
+
                 thead {   
                     display: table-row-group;
     
@@ -176,6 +177,7 @@
                         td {
                             display: table-cell;
                             padding: 1.5rem 1rem;
+                            text-align: left;
 
                             &:first-child {
                                 border-bottom: 0;
