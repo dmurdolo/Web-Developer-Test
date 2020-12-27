@@ -39,7 +39,7 @@ function Header() {
                 <a href="#">Contact</a>
                 <a href="/cart"><Image src="/images/icon-basket.png" width={19.7} height={16.3} alt="Basket" /></a>
             </nav>
-            <nav>
+            <nav className="desktop-nav-menu">
                 <a href="#">Products</a>
                 <a href="#">News</a>
                 <a href="#">Contact</a>
