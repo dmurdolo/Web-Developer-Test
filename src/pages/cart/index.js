@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import { useToasts } from 'react-toast-notifications'
 
-import data from '../../../data/products/index.json'
 import QuantityInput from '../../components/QuantityInput'
 
 const roundNumber = (num) => {
@@ -17,7 +17,7 @@ const displayAsDecimal = (amount) => {
     return amount.toFixed(2);
 }
 
-const deleteConfirm = (item, deleteItem, updateItemTotal, updateCartItems) => {    
+const deleteConfirm = (item, deleteItem, updateItemTotal, updateCartItems) => {
     return confirmAlert({
         title: `This will remove ${item.name}${item.size ? `, ${item.size}` : ', one size'} from your cart.`,
         message: 'Are you sure?',
@@ -47,16 +47,25 @@ const stockAlert = (item, addToast) => {
 
 const Cart = () => {
     const { addToast } = useToasts();
+    const [loading, setLoading] = useState(true);
     const [cartSubtotal, setCartSubtotal] = useState(0);
     const [cartTax, setCartTax] = useState(0);
     const [cartTotal, setCartTotal] = useState(0);
-    const [cartItems, setCartItems] = useState(data && data.items.filter(item => item.stockLevel > 0));
+    const [cartItems, setCartItems] = useState([]);
 
-    // Add some quantities for initial test purposes on mount
+    const router = useRouter();
+
+    // Fetch product data from the API
     useEffect(() => {
-        cartItems && cartItems.map(item => {
-            item.quantity = 1;
-        });
+        fetch('/api/products')
+            .then(res => res.json())
+            .then(data => {
+                setLoading(false);
+                setCartItems(data.products)
+            })
+            .catch(err => {
+                setLoading(false);
+            })
     }, []);
 
     // Calculate the item total, subtotal, tax and overall total on update
@@ -145,6 +154,31 @@ const Cart = () => {
         return roundNumber(item.total);
     }
 
+    // On checkout POST to API then redirect to thanks page
+    const checkoutCart = () => {
+        return fetch('http://localhost:3000/api/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cartItems)
+        })
+            .then(response => response.json())
+            .then(res => {
+                if (res.ok) {
+                    router.push({
+                        pathname: '/cart/thanks',
+                        query: { oid: res.orderId }
+                    });
+                } else {
+                    router.push({
+                        pathname: '/cart',
+                        query: { error: true }
+                    });
+                }
+            });
+    }
+
     return (
         <div className="wrapper cart">
             <Head>
@@ -166,7 +200,8 @@ const Cart = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {cartItems.length > 0 ? cartItems.map(item => {
+                        {loading && <tr><td colSpan="5">Loading your cart...</td></tr>}
+                        {!loading && cartItems && cartItems.length > 0 ? cartItems.map(item => {
                             return (
                                 <tr className="cart-item" key={item.sku}>
                                     <td>{item.name}{item.size ? `, ${item.size}` : ', one size'}</td>
@@ -176,7 +211,7 @@ const Cart = () => {
                                     <td><button className="bin"><Image src="/images/icon-bin.png" width={18} height={20} alt="Delete item" onClick={() => deleteItem(item.sku)} /></button></td>
                                 </tr>
                             )
-                        }) : <tr className="no-items">
+                        }) : !loading && <tr className="no-items">
                                 <td colSpan="5">No items added to your cart. Please add some <a href="/" title="Home">here</a></td>
                             </tr>}
                         <tr className="subtotal">
@@ -200,7 +235,7 @@ const Cart = () => {
                         <tr className="buy">
                             <td colSpan={3}></td>
                             <td>
-                                <button disabled={cartItems && cartItems.length == 0 ? true : false} className="buy">Buy now</button>
+                                <button disabled={cartItems && cartItems.length == 0 ? true : false} className="buy" onClick={checkoutCart}>Buy now</button>
                             </td>
                             <td></td>
                         </tr>

@@ -1,6 +1,25 @@
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 
 function Header() {
+    useEffect(() => {
+        const nav = document.getElementsByClassName('mobile-nav-menu')[0];
+        setNavDisplay(nav, 'none');
+    }, []);
+
+    const toggleMobileMenu = () => {
+        const nav = document.getElementsByClassName('mobile-nav-menu')[0];
+        if (nav.style.display == 'none') {
+            setNavDisplay(nav, 'block');
+        } else {
+            setNavDisplay(nav, 'none');
+        }
+    }
+
+    const setNavDisplay = (nav, value) => {
+        nav.style.display = value;
+    }
+
     return (
         <header>
             <a href="/" alt="Home">
@@ -10,10 +29,16 @@ function Header() {
                 <button>
                     <p>Menu</p>
                     <span>
-                        <Image src="/images/icon-burger-menu.png" width={16} height={14} alt="Menu" />
+                        <Image src="/images/icon-burger-menu.png" width={16} height={14} alt="Menu" onClick={toggleMobileMenu} />
                     </span>
                 </button>
             </div>
+            <nav className="mobile-nav-menu">
+                <a href="#">Products</a>
+                <a href="#">News</a>
+                <a href="#">Contact</a>
+                <a href="/cart"><Image src="/images/icon-basket.png" width={19.7} height={16.3} alt="Basket" /></a>
+            </nav>
             <nav>
                 <a href="#">Products</a>
                 <a href="#">News</a>

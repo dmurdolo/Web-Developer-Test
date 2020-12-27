@@ -29,10 +29,20 @@ header {
     }
 
     nav {
+        display: none;
         float: right;
         text-align: right;
-        display: none;
 
+        &.mobile-nav-menu {
+            position: absolute;
+            top: 5rem;
+            right: 1rem;
+            padding: 0 1rem;
+            background: #fff;
+            border: 1px solid #979797;
+            border-radius: .5rem;
+        }    
+    
         a {            
             display: block;
             font-size: var(--font-size--x-small);
@@ -40,6 +50,7 @@ header {
             text-decoration: none;
             text-transform: uppercase;
             color: #000;
+            margin: 1.5rem 0;
         }
     }
 
@@ -54,10 +65,17 @@ header {
         nav {
             text-align: left;
             display: block;
+            border: 0;
+            border-radius: 0;
+
+            &.mobile-nav-menu {
+                display: none !important;
+            }
 
             a {
                 display: inline-block;
                 padding: 0 0 0 2rem;
+                margin: 0;
                 vertical-align: middle;
     
                 &:first-child {

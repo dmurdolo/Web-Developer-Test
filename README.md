@@ -4,10 +4,10 @@ A basic structure of a web application for web developers to develop upon and sh
 
 ### Please DO NOT mention any Company or Individual names in code, when forking, committing, branching, developing or completing the exercise. 
 
-# Dependancies
+# Dependencies
 > node ^10.15.3
 
-> grunt-cli ```npm install -g grunt-cli```
+<!-- > grunt-cli ```npm install -g grunt-cli``` -->
 
 # Get Started
 
@@ -21,7 +21,7 @@ npm i
 
 ## Build the app & watch
 ```
-grunt dev
+npm run dev
 ```
 
 ## Start application and server
