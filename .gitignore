@@ -60,6 +60,3 @@ typings/
 # Next.js config
 .next/
 
-# Cypress config
-cypress.json
-
