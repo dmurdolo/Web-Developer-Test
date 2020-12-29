@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const { parse } = require('url');
 const next = require('next');
 
@@ -9,17 +8,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const server = express();
 
-const cartController = require('./api/controllers/cart');
-const productController = require('./api/controllers/product');
-
 app.prepare().then(() => {
-  server.use(bodyParser.json());
-  server.use(bodyParser.urlencoded({ extended: false }));
-
-  // API endpoints
-  server.get('/api/products', productController.products);
-  server.post('/api/checkout', cartController.checkout);
-
   // All route handler
   server.get('*', (req, res) => {
     const parsedUrl = parse(req.url, true);
