@@ -2,13 +2,8 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 
 function Header() {
-    useEffect(() => {
-        const nav = document.getElementById('mobile-nav-menu');
-        setNavDisplay(nav, 'none');
-    }, []);
-
     const toggleMobileMenu = () => {
-        const nav = document.getElementById('mobile-nav-menu');
+        const nav = document.getElementById('nav-menu');
         if (nav.style.display == 'none') {
             setNavDisplay(nav, 'block');
         } else {
@@ -33,13 +28,7 @@ function Header() {
                     </span>
                 </button>
             </div>
-            <nav id="mobile-nav-menu">
-                <a href="#">Products</a>
-                <a href="#">News</a>
-                <a href="#">Contact</a>
-                <a href="/cart"><Image src="/images/icon-basket.png" width={19.7} height={16.3} alt="Basket" /></a>
-            </nav>
-            <nav id="desktop-nav-menu">
+            <nav id="nav-menu">
                 <a href="#">Products</a>
                 <a href="#">News</a>
                 <a href="#">Contact</a>

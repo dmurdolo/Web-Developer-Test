@@ -196,11 +196,11 @@ const Cart = () => {
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Cost</th>
-                            <th></th>
+                            <td></td>
                         </tr>
                     </thead>
                     <tbody>
-                        {loading && <tr><td colSpan="5">Loading your cart...</td></tr>}
+                        {loading && <tr><td colSpan="5"><caption>Loading your cart...</caption></td></tr>}
                         {!loading && cartItems && cartItems.length > 0 ? cartItems.map(item => {
                             return (
                                 <tr className="cart-item" key={item.sku}>
