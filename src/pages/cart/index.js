@@ -156,7 +156,7 @@ const Cart = () => {
 
     // On checkout POST to API then redirect to thanks page
     const checkoutCart = () => {
-        return fetch('http://localhost:3000/api/checkout', {
+        return fetch('/api/checkout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
