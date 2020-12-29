@@ -7,9 +7,10 @@
   },
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "SET PORT=4000 && node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "SET PORT=4000 && SET NODE_ENV=production && node server.js",
+    "test": "cypress run",
     "cypress:open": "cypress open"
   },
   "repository": "git+https://github.com/Crazy-Alpaca/Web-Developer-Test.git",

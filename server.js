@@ -32,7 +32,7 @@ app.prepare().then(() => {
     return res.status(500).json({ ok: false, error: error.toString() });
   });
 
-  server.listen(3000, (err) => {
+  server.listen(port, (err) => {
     if (err) throw err;
 
     console.log(`\n ==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.`);

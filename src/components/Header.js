@@ -3,12 +3,12 @@ import Image from 'next/image'
 
 function Header() {
     useEffect(() => {
-        const nav = document.getElementsByClassName('mobile-nav-menu')[0];
+        const nav = document.getElementById('mobile-nav-menu');
         setNavDisplay(nav, 'none');
     }, []);
 
     const toggleMobileMenu = () => {
-        const nav = document.getElementsByClassName('mobile-nav-menu')[0];
+        const nav = document.getElementById('mobile-nav-menu');
         if (nav.style.display == 'none') {
             setNavDisplay(nav, 'block');
         } else {
@@ -25,7 +25,7 @@ function Header() {
             <a href="/" alt="Home">
                 <Image src="/images/app-logo.png" width={59.4} height={19} alt="App logo" />
             </a>
-            <div className="mobile-nav">
+            <div id="mobile-nav">
                 <button>
                     <p>Menu</p>
                     <span>
@@ -33,13 +33,13 @@ function Header() {
                     </span>
                 </button>
             </div>
-            <nav className="mobile-nav-menu">
+            <nav id="mobile-nav-menu">
                 <a href="#">Products</a>
                 <a href="#">News</a>
                 <a href="#">Contact</a>
                 <a href="/cart"><Image src="/images/icon-basket.png" width={19.7} height={16.3} alt="Basket" /></a>
             </nav>
-            <nav className="desktop-nav-menu">
+            <nav id="desktop-nav-menu">
                 <a href="#">Products</a>
                 <a href="#">News</a>
                 <a href="#">Contact</a>

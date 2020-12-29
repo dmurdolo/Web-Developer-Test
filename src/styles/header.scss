@@ -4,7 +4,7 @@ header {
     box-shadow: 0px 2px 8px 2px #d4d4d4;
     padding: 2rem;
 
-    .mobile-nav {
+    #mobile-nav {
         float: right;
 
         button {
@@ -33,7 +33,7 @@ header {
         float: right;
         text-align: right;
 
-        &.mobile-nav-menu {
+        &#mobile-nav-menu {
             position: absolute;
             top: 5rem;
             right: 1rem;
@@ -58,7 +58,7 @@ header {
         height: 112px;
         padding: 4.2rem;
 
-        .mobile-nav {
+        #mobile-nav {
             display: none;
         }
 
@@ -68,7 +68,7 @@ header {
             border: 0;
             border-radius: 0;
 
-            &.mobile-nav-menu {
+            &#mobile-nav-menu {
                 display: none !important;
             }
 
