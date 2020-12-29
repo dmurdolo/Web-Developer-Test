@@ -60,3 +60,8 @@ typings/
 # Next.js config
 .next/
 
+# Vercel
+.vercel
+
+# Cypress
+cypress/videos/

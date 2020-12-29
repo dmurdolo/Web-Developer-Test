@@ -7,9 +7,9 @@
   },
   "main": "server.js",
   "scripts": {
-    "dev": "SET PORT=4000 && node server.js",
+    "dev": "vercel dev",
     "build": "next build",
-    "start": "SET PORT=4000 && SET NODE_ENV=production && node server.js",
+    "start": "NODE_ENV=production next start",
     "test": "cypress run",
     "cypress:open": "cypress open"
   },
@@ -35,7 +35,8 @@
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-sass": "^3.0.2",
-    "http-server": "^0.12.3"
+    "http-server": "^0.12.3",
+    "vercel": "^21.0.1"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

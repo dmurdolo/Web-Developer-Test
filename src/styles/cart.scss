@@ -191,6 +191,12 @@
                             &:before {                        
                                 display: none;
                             }
+
+                            p {
+                                width: 100%;
+                                text-align: left;
+                                margin: 0;
+                            }
                         }
 
                         &.vat, &.subtotal, &.total, &.buy {    

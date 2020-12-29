@@ -200,7 +200,7 @@ const Cart = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {loading && <tr><td colSpan="5"><caption>Loading your cart...</caption></td></tr>}
+                        {loading && <tr><td colSpan="5"><p>Loading your cart...</p></td></tr>}
                         {!loading && cartItems && cartItems.length > 0 ? cartItems.map(item => {
                             return (
                                 <tr className="cart-item" key={item.sku}>

@@ -4,7 +4,8 @@ import Image from 'next/image'
 function Header() {
     const toggleMobileMenu = () => {
         const nav = document.getElementById('nav-menu');
-        if (nav.style.display == 'none') {
+        if (nav.style.display == 'none' || nav.style.display == '') {
+            
             setNavDisplay(nav, 'block');
         } else {
             setNavDisplay(nav, 'none');

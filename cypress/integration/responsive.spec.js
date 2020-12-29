@@ -6,12 +6,12 @@ context('Viewport', () => {
     })
   
     it('should show different nav menus based on size', () => {  
-      cy.get('#desktop-nav-menu').should('be.visible');
-      cy.viewport(320, 480);
+      cy.get('#nav-menu').should('be.visible');
 
-      cy.get('#desktop-nav-menu').should('not.be.visible');
+      cy.viewport(320, 480);
+      cy.get('#nav-menu').should('not.be.visible');
       cy.get('#mobile-nav').should('be.visible').find('img[alt*="Menu"]').click();
-      cy.get('#mobile-nav-menu').find('a').should('be.visible');
+      cy.get('#nav-menu').find('a').should('be.visible');
     });
 });
   

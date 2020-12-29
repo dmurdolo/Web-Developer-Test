@@ -11,11 +11,11 @@ context('Navigation', () => {
         });
 
         it('Find the cart link', () => {
-            cy.get('#desktop-nav-menu').find('a[href*="/cart"]');
+            cy.get('#nav-menu').find('a[href*="/cart"]');
         });
 
         it('Navigate to the cart page', () => {
-            cy.get('#desktop-nav-menu').find('a[href*="/cart"]').click();
+            cy.get('#nav-menu').find('a[href*="/cart"]').click();
         });
     });
 });
