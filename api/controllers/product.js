@@ -7,6 +7,7 @@ const productController = {
             el.quantity = 1;
         });
 
+        res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
         return res.status(200).json({ ok: true, message: 'Got products', products: data && data.items.filter(el => el.stockLevel > 0) });
     }
 };
