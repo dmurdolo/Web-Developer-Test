@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A sample application for demonstrating web development skills",
   "engines": {
-    "node": ">=10.15.3"
+    "node": ">=10.x"
   },
   "main": "",
   "scripts": {
