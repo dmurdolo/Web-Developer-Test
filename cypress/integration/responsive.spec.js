@@ -10,7 +10,7 @@ context('Viewport', () => {
 
       cy.viewport(320, 480);
       cy.get('#nav-menu').should('not.be.visible');
-      cy.get('#mobile-nav').should('be.visible').find('img[alt*="Menu"]').click();
+      cy.get('#mobile-nav').should('be.visible').find('button').click();
       cy.get('#nav-menu').find('a').should('be.visible');
     });
 });

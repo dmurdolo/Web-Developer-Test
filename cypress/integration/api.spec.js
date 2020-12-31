@@ -22,7 +22,7 @@ context('Data', () => {
                     expect(response.status).to.eq(200);
 
                     expect(response.body).property('ok').to.be.true;
-                    expect(response.body).property('orderId').to.have.length(6);
+                    expect(response.body).property('orderId').length.to.be.at.least(5);
                 });
         });
     });

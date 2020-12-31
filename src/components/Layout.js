@@ -1,18 +1,11 @@
-// components/Layout.js
-import React, { Component } from 'react';
-import Header from './Header';
-
-import Head from 'next/head';
+import React, { Component } from 'react'
+import Header from './Header'
 
 class Layout extends Component {
   render () {
     const { children } = this.props
     return (
-      <div className='layout'>          
-        <Head>
-            <title>💡 My App</title>
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head>
+      <div className='layout'>
         <Header />
         {children}
       </div>

@@ -22,10 +22,10 @@ function Header() {
                 <Image src="/images/app-logo.png" width={59.4} height={19} alt="App logo" />
             </a>
             <div id="mobile-nav">
-                <button>
+                <button onClick={toggleMobileMenu}>
                     <p>Menu</p>
                     <span>
-                        <Image src="/images/icon-burger-menu.png" width={16} height={14} alt="Menu" onClick={toggleMobileMenu} />
+                        <Image src="/images/icon-burger-menu.png" width={16} height={14} alt="Menu" />
                     </span>
                 </button>
             </div>

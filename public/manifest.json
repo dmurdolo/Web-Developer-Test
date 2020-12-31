@@ -1,0 +1,26 @@
+{
+    "name": "💡 My app",
+    "short_name": "App",
+    "icons": [
+      {
+        "src": "/public/icons/apple-touch-icon.png",
+        "sizes": "120x120",
+        "type": "image/png"
+      },
+      {
+        "src": "/public/icons/favicon-16x16.png",
+        "sizes": "16x16",
+        "type": "image/png"
+      },
+      {
+        "src": "/public/icons/favicon-32x32.png",
+        "sizes": "32x32",
+        "type": "image/png"
+      }
+    ],
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait"
+  }

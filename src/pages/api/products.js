@@ -1,4 +1,4 @@
-const data = require('../../../data/products/index.json');
+const data = require('../../../data/products/index.json')
 
 export default function handler(req,res) {
     // Add some quantities to simulate the complete process of having added items to the cart
